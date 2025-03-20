@@ -121,7 +121,8 @@ func _parse_symbol_path(ast_node : AST.ASTNode) -> SymbolTable.SymbolPath:
 			continue
 		break
 	
-	path.is_call = _tokenizer.peek().is_punctuator("(")
+	var peek := _tokenizer.peek()
+	path.is_call = peek and peek.is_punctuator("(")
 	
 	return path
 
@@ -483,7 +484,8 @@ func _parse_var(parent : AST.ASTNode) -> AST.Var:
 		_Logger.write("ERROR: Parser._parse_var() - Symbol expected!")
 		return null
 	
-	var is_static : bool = _tokenizer.peek(-2).is_keyword("static")
+	var peek := _tokenizer.peek(-2)
+	var is_static : bool = peek and peek.is_keyword("static")
 	
 	var ast := AST.Var.new(parent)
 	ast.symbol = _symbol_table.create_symbol(ast, token.get_value(), _parse_var_type(ast))
