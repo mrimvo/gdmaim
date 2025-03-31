@@ -1,3 +1,4 @@
+class_name GdTokenizer
 extends RefCounted
 
 
@@ -158,6 +159,8 @@ func _read_next_token() -> bool:
 	elif _is_punctuator(char):
 		# Punctuator
 		_add_punctuator(_stream.get_next())
+	elif char == "%" and _stream.peek(2) != _stream.peek(2).to_lower():
+		_read_node_path()
 	elif _is_operator(char):
 		# Operator
 		_read_operator()

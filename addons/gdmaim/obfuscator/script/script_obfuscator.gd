@@ -142,7 +142,7 @@ func _func_feature_filter(token : Token, line : Tokenizer.Line, feature : String
 	if !features.has(feature):
 		var identation : int = line.get_identation()
 		var func_path : String = path.get_basename() + "." + tokenizer.get_next().get_value()#tokenizer.get_next().symbol.get_source_name()
-		var func_body : String = 'printerr("ERROR: illegal call to ' + "'" + func_path + "'!" + '");'
+		var func_body : String = "pass"
 		var pth : int = 0
 		while !tokenizer.is_eof():
 			token = tokenizer.get_next()
